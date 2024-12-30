@@ -1,0 +1,28 @@
+PODS:
+  - Flutter (1.0.0)
+  - ggomdol_pedometer (1.0.0):
+    - Flutter
+  - permission_handler_apple (9.3.0):
+    - Flutter
+
+DEPENDENCIES:
+  - Flutter (from `Flutter`)
+  - ggomdol_pedometer (from `.symlinks/plugins/ggomdol_pedometer/ios`)
+  - permission_handler_apple (from `.symlinks/plugins/permission_handler_apple/ios`)
+
+EXTERNAL SOURCES:
+  Flutter:
+    :path: Flutter
+  ggomdol_pedometer:
+    :path: ".symlinks/plugins/ggomdol_pedometer/ios"
+  permission_handler_apple:
+    :path: ".symlinks/plugins/permission_handler_apple/ios"
+
+SPEC CHECKSUMS:
+  Flutter: e0871f40cf51350855a761d2e70bf5af5b9b5de7
+  ggomdol_pedometer: 3f1da854472b96a3b480f0a9874f88b7b00f83cf
+  permission_handler_apple: 9878588469a2b0d0fc1e048d9f43605f92e6cec2
+
+PODFILE CHECKSUM: 1ea9f49c4f5a0cb4ea986a31044ceb0f7668e46a
+
+COCOAPODS: 1.15.2
