@@ -32,6 +32,27 @@ class MyAppState extends State<MyApp> with WidgetsBindingObserver {
     super.dispose();
   }
 
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    switch (state) {
+      case AppLifecycleState.detached:
+        break;
+      case AppLifecycleState.resumed:
+        /// If it is in resumed status, monitoring begins.
+        _checkPermissionAndStartReadPedometer();
+        break;
+      case AppLifecycleState.inactive:
+        break;
+      case AppLifecycleState.hidden:
+        break;
+      case AppLifecycleState.paused:
+        /// If it is in paused status, monitoring stops for battery.
+        Pedometer.stopReadStepCount();
+        break;
+    }
+  }
+
+  /// Check permission
   Future<bool> _checkActivityRecognitionPermission() async {
     bool granted = await Permission.activityRecognition.isGranted;
 
@@ -43,32 +64,7 @@ class MyAppState extends State<MyApp> with WidgetsBindingObserver {
     return granted;
   }
 
-  void _onStepCount(List<DailySteps> dailySteps) {
-    setState(() {
-      if (listEquals(dailySteps, _dailySteps) == false) {
-        _dailySteps = dailySteps..sort((a,b) => b.day.compareTo(a.day));
-      }
-    });
-  }
-
-  @override
-  void didChangeAppLifecycleState(AppLifecycleState state) {
-    switch (state) {
-      case AppLifecycleState.detached:
-        break;
-      case AppLifecycleState.resumed:
-        _checkPermissionAndStartReadPedometer();
-        break;
-      case AppLifecycleState.inactive:
-        break;
-      case AppLifecycleState.hidden:
-        break;
-      case AppLifecycleState.paused:
-        Pedometer.stopReadStepCount();
-        break;
-    }
-  }
-
+  /// Check permission and start Pedometer service
   Future<void> _checkPermissionAndStartReadPedometer() async {
     if(defaultTargetPlatform == TargetPlatform.android) {
       bool granted = await _checkActivityRecognitionPermission();
@@ -79,8 +75,19 @@ class MyAppState extends State<MyApp> with WidgetsBindingObserver {
       }
     }
 
+    /// Run Pedometer service
     Pedometer.startService();
+    /// Run Pedometer query for gain step counts
     Pedometer.startReadStepCount(const Duration(seconds: 1), _onStepCount);
+  }
+
+  /// Start steps monitoring : maximum 7days
+  void _onStepCount(List<DailySteps> dailySteps) {
+    setState(() {
+      if (listEquals(dailySteps, _dailySteps) == false) {
+        _dailySteps = dailySteps..sort((a,b) => b.day.compareTo(a.day));
+      }
+    });
   }
 
   @override

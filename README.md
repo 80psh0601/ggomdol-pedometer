@@ -51,37 +51,41 @@ See the [example app](https://github.com/cph-cachet/flutter-plugins/blob/master/
 Below is shown a more generalized example. Remember to set the required permissions, as described above. This may require you to manually allow the permission in the "Settings" on the phone.
 
 ``` dart
-  Stream<StepCount> _stepCountStream;
-  Stream<PedestrianStatus> _pedestrianStatusStream;
+  /// Check permission
+  Future<bool> _checkActivityRecognitionPermission() async {
+    bool granted = await Permission.activityRecognition.isGranted;
 
-  /// Handle step count changed
-  void onStepCount(StepCount event) {
-    int steps = event.steps;
-    DateTime timeStamp = event.timeStamp;
+    if (!granted) {
+      granted = await Permission.activityRecognition.request() ==
+          PermissionStatus.granted;
+    }
+
+    return granted;
   }
 
-  /// Handle status changed
-  void onPedestrianStatusChanged(PedestrianStatus event) {
-    String status = event.status;
-    DateTime timeStamp = event.timeStamp;
+  /// Check permission and start Pedometer service
+  Future<void> _checkPermissionAndStartReadPedometer() async {
+    if(defaultTargetPlatform == TargetPlatform.android) {
+      bool granted = await _checkActivityRecognitionPermission();
+
+      if (!granted) {
+        // tell user, the app will not work
+        return;
+      }
+    }
+
+    /// Run Pedometer service
+    Pedometer.startService();
+    /// Run Pedometer query for gain step counts
+    Pedometer.startReadStepCount(const Duration(seconds: 1), _onStepCount);
   }
 
-    /// Handle the error
-  void onPedestrianStatusError(error) {}
-
-  /// Handle the error
-  void onStepCountError(error) {}
-
-  Future<void> initPlatformState() async {
-    // Init streams
-    _pedestrianStatusStream = await Pedometer.pedestrianStatusStream;
-    _stepCountStream = await Pedometer.stepCountStream;
-
-    // Listen to streams and handle errors
-    _stepCountStream.listen(onStepCount).onError(onStepCountError);
-
-    _pedestrianStatusStream
-      .listen(onPedestrianStatusChanged)
-      .onError(onPedestrianStatusError);
+  /// Start steps monitoring : maximum 7days
+  void _onStepCount(List<DailySteps> dailySteps) {
+    setState(() {
+      if (listEquals(dailySteps, _dailySteps) == false) {
+        _dailySteps = dailySteps..sort((a,b) => b.day.compareTo(a.day));
+      }
+    });
   }
 ```
