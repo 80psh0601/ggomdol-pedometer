@@ -108,7 +108,7 @@ class MyAppState extends State<MyApp> with WidgetsBindingObserver {
                     return Row(
                       children: [
                         Text(
-                          '[${_dailySteps[index].year}-${_dailySteps[index].month}-${_dailySteps[index].day}]',
+                          '${_dailySteps[index].year}-${_dailySteps[index].month}-${_dailySteps[index].day} :',
                           style: const TextStyle(fontSize: 20),
                         ),
                         const SizedBox(

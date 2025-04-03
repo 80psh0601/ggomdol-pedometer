@@ -1,10 +1,10 @@
 # Pedometer
 
-[![pub package](https://img.shields.io/pub/v/pedometer.svg)](https://pub.dartlang.org/packages/pedometer)
+[pub package](https://img.shields.io/pub/v/pedometer.svg)(https://pub.dartlang.org/packages/pedometer)
 
 This plugin allows for continuous step counting and pedestrian status using the built-in pedometer sensor API of iOS and Android devices.
 
-![](https://raw.githubusercontent.com/cph-cachet/flutter-plugins/master/packages/pedometer/imgs/screenshots.png)
+![](https://github.com/80psh0601/ggomdol-pedometer/master/screenshot.png)
 
 ## Permissions
 
@@ -46,7 +46,7 @@ In the case that the step sensor is not available, an error will be thrown. The 
 
 ## Example Usage
 
-See the [example app](https://github.com/cph-cachet/flutter-plugins/blob/master/packages/pedometer/example/lib/main.dart) for a fully-fledged example.
+See the [example app](https://github.com/80psh0601/ggomdol-pedometer/tree/main/ggomdol_pedometer_example/lib/main.dart) for a fully-fledged example.
 
 Below is shown a more generalized example. Remember to set the required permissions, as described above. This may require you to manually allow the permission in the "Settings" on the phone.
 
