@@ -1,8 +1,8 @@
 # Pedometer
 
-[pub package](https://pub.dartlang.org/packages/pedometer)
+[pub package](https://pub.dartlang.org/packages/ggomdol_pedometer)
 
-This plugin allows for continuous step counting and pedestrian status using the built-in pedometer sensor API of iOS and Android devices.
+This plugin allows for Query the number of steps count collected over 7 days on AOS and IOS.
 
 ![Image](https://github.com/user-attachments/assets/a3e65e1d-ca05-409f-8748-149600d3bd05)
 
@@ -27,22 +27,8 @@ For iOS, add the following entries to your Info.plist file in the Runner xcode p
 
 ## Step Count
 
-The step count represents the number of steps taken since the last system boot.
-On Android, any steps taken before installing the application will not be counted.
-
-## Pedestrian Status
-
-The Pedestrian status is either `walking` or `stopped`. In the case that of an error,
-the status will be `unknown`.
-
-## Availability of Sensors
-
-Both Step Count and Pedestrian Status may not be available on some phones:
-
-* It was found that some Samsung phones do not support Step Count or Pedestrian Status
-* Older iPhones do not support Pedestrian Status in particular
-
-In the case that the step sensor is not available, an error will be thrown. The application needs to handle this error.
+It works regardless of power on/off on both AOS and IOS. 
+Also, it does not require foreground or background service. Data for the past 7 days is managed by the OS.
 
 ## Example Usage
 

@@ -1,7 +1,6 @@
 name: ggomdol_pedometer
-description: A Pedometer and Step Detection package for Android and iOS. Step count is streamed as the platform updates it.
+description: This plugin allows for Query the number of steps count collected over 7 days on AOS and IOS.
 version: 1.0.0
-publish_to: none
 
 environment:
   sdk: ">=2.17.0 <4.0.0"
