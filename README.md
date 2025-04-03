@@ -4,7 +4,7 @@
 
 This plugin allows for continuous step counting and pedestrian status using the built-in pedometer sensor API of iOS and Android devices.
 
-![](https://github.com/80psh0601/ggomdol-pedometer/blob/master/screenshot.png)
+![Image](https://github.com/user-attachments/assets/a3e65e1d-ca05-409f-8748-149600d3bd05)
 
 ## Permissions
 
