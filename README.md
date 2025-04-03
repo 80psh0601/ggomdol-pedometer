@@ -1,6 +1,6 @@
 # Pedometer
 
-[pub package](https://img.shields.io/pub/v/pedometer.svg)(https://pub.dartlang.org/packages/pedometer)
+[pub package](https://pub.dartlang.org/packages/pedometer)
 
 This plugin allows for continuous step counting and pedestrian status using the built-in pedometer sensor API of iOS and Android devices.
 
